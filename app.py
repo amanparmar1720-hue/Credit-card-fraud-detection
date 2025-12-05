@@ -1,7 +1,7 @@
 # app.py
 
 # --- 1. Imports ---
-# No changes to imports
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 
 # --- 2. Load ML Assets ---
-# This section remains unchanged
+
 try:
     print("--- Loading ML Assets ---")
     model = joblib.load("final_fraud_detection_model.joblib")
@@ -21,7 +21,7 @@ except FileNotFoundError as e:
     scaler = None
 
 # --- 3. Define the input data model using Pydantic ---
-# This class remains unchanged
+
 class TransactionFeatures(BaseModel):
     Time: float
     V1: float
@@ -55,7 +55,7 @@ class TransactionFeatures(BaseModel):
     Amount: float
 
 # --- 4. Create App Object ---
-# This part remains the same
+
 app = FastAPI(
     title="Credit Card Fraud Detection API",
     description="An API to predict fraudulent credit card transactions using a trained LightGBM model.",
@@ -90,7 +90,7 @@ def predict_fraud(transaction: TransactionFeatures):
     probabilities = model.predict_proba(input_df)
     fraud_probability = probabilities[0][1]
     
-    # --- This is the new logic for the current task ---
+
     # 4. Format the final response
     
     # Use a simple if-else statement to determine the human-readable label.
@@ -101,10 +101,11 @@ def predict_fraud(transaction: TransactionFeatures):
         prediction_label = "Not Fraud"
         is_fraud_flag = False
 
-    # Construct the final JSON response with clear, descriptive keys.
-    # We explicitly cast the numpy float to a native Python float for safety.
+
+    
     return {
         "prediction": prediction_label,
         "is_fraud": is_fraud_flag,
         "confidence_score": float(fraud_probability)
     }
+
