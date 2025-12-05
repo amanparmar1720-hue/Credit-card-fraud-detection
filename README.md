@@ -1,7 +1,7 @@
 # Credit Card Fraud Detection System
 
 A machine learning project to detect fraudulent credit card transactions from highly imbalanced real-world datasets.  
-The project covers the full pipeline from **data preprocessing → handling class imbalance → model training → evaluation → deployment** as an API.
+The project covers the full pipeline from **data preprocessing to handling class imbalance then to model training then to evaluation and finally deployment** as an API.
 
 ---
 
